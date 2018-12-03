@@ -95,7 +95,7 @@ if ($mode == 0) {
                 </div>
             </div>';
         }
-        echo '    
+        echo '
         </div>
         ';
         exit('');
@@ -135,7 +135,7 @@ if ($mode == 0) {
                 </div>
             </div>';
             }
-            echo '    
+            echo '
         </div>
         ';
         }
@@ -263,7 +263,7 @@ if ($mode == 0) {
                 </div>
             </div>';
         }
-        echo '    
+        echo '
         </div>
         ';
     }
@@ -340,7 +340,8 @@ else if ($mode == 6) {
         $item = $result->fetch_assoc();
         $name = $item['name'];
         $link = $item['link'];
-        $conn->query("INSERT INTO items(name, link, userid) VALUES('$name', '$link', $uid)");
+        $multipleok = $item['multipleok'];
+        $conn->query("INSERT INTO items(name, link, userid, multipleok) VALUES('$name', '$link', $uid, $multipleok)");
         $conn->query("DELETE FROM olditems WHERE id=$itemid");
     }
 } //REMOVE FROM OLD LIST
