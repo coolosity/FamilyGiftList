@@ -27,7 +27,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['mode
                 $msg = 'Username taken';
             } else {
                 $hashpass = password_hash($pass, PASSWORD_DEFAULT);
-                $conn->query("INSERT INTO users(username, password, realname) VALUES('$user', '$hashpass', '$rname')");
+                $conn->query("INSERT INTO users(username, password, realname, familyid) VALUES('$user', '$hashpass', '$rname', 0)");
                 $_SESSION['id'] = $conn->insert_id;
             }
         }
