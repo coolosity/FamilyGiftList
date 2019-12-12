@@ -29,6 +29,9 @@ if (isset($_POST['mode'])) {
         } else {
             $msg = 'Link already exists for this user';
         }
+    } else if ($mode == 2 && isset($_POST['user'])) {
+        $_SESSION['id'] = $_POST['user'];
+        header('Location: home.php');
     }
 }
 $urispl = explode('/', $_SERVER['REQUEST_URI']);
@@ -86,6 +89,20 @@ $actual_link .= 'changepass.php?authid=';
         echo '
             </select>
             <input type="submit" value="Generate Link"/>
+        </form>
+    </p>
+    <p>
+        Login as user:<br>
+        <form action="admin.php" method="post">
+            <input type="hidden" name="mode" value="2"/>
+            <select name="user">';
+        $result = $conn->query("SELECT * FROM users");
+        while ($row = $result->fetch_assoc()) {
+            echo '<option value="' . $row['id'] . '">' . $row['realname'] . '</option>';
+        }
+        echo '
+            </select>
+            <input type="submit" value="Login"/>
         </form>
     </p>
     ';
